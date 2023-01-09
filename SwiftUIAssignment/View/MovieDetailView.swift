@@ -14,11 +14,14 @@ struct MovieDetailView: View {
     var body: some View {
         VStack(spacing: 20)
         {
-            Image(uiImage: aMovie.moviePoster!)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200)
-                .cornerRadius(20)
+            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/original\(aMovie.detailData.poster_path)" )) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+            } placeholder: {
+                Color.black
+            }
             
             Text(aMovie.detailData.original_title)
                 .font(.title)
